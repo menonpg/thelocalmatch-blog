@@ -71,7 +71,7 @@ The window between the current app fatigue and mainstream adoption of premium ma
 *The Local Match Co. is a professional matchmaking franchise based in Pittsburgh, PA. We're selectively expanding to cities across the United States. One operator per metro area. Learn more at [thelocalmatch.com](https://thelocalmatch.com).*
 
 **Sources:**
-- Match Group Inc. Quarterly Earnings Reports (2022–2024).
-- Pew Research Center (2023). *Online Dating in America.*
-- IBISWorld (2024). *Dating Services Industry in the US — Market Research Report.*
-- Bumble Inc. Annual Report (2023).
+- Match Group Inc. [Quarterly Earnings Reports (2022–2024).](https://ir.mtch.com/financial-information/quarterly-earnings)
+- Pew Research Center (2023). [*Online Dating in America.*](https://www.pewresearch.org/internet/2023/02/02/online-dating/)
+- IBISWorld (2024). [*Dating Services Industry in the US — Market Research Report.*](https://www.ibisworld.com/united-states/market-research-reports/dating-services-industry/)
+- Bumble Inc. [Annual Report (2023).](https://ir.bumble.com/sec-filings/annual-reports)
