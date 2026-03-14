@@ -18,7 +18,7 @@ faqItems:
     answer: "The Local Match Co. is currently based in Pittsburgh, PA through 412 Singles, with franchise territories available across the United States. We take one operator per metro area."
 ---
 
-In 2001, our founder Rob Vargas introduced his first couple. She was a schoolteacher from the North Side. He was a software engineer who'd been on exactly two dates in three years. They've been married 22 years. Three kids.
+In 2001, our co-founder Rob Vargas introduced his first couple. She was a schoolteacher from the North Side. He was a software engineer who'd been on exactly two dates in three years. They've been married 22 years. Three kids.
 
 For two and a half decades, Rob has been making introductions like that in Pittsburgh — quietly, personally, one conversation at a time. While the apps got bigger and the algorithms got smarter, he kept doing the same thing: sitting across the table from someone who was genuinely ready for a relationship, understanding what they were looking for, and going to find it.
 
