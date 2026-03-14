@@ -91,7 +91,7 @@ The research doesn't guarantee any relationship. But it tells us a great deal ab
 *The Local Match Co. is a professional matchmaking service based in Pittsburgh, PA. Learn more at [thelocalmatch.com](https://thelocalmatch.com).*
 
 **Further reading:**
-- Gottman, J.M. & Silver, N. (1999). *The Seven Principles for Making Marriage Work.* Crown.
-- Finkel, E.J. et al. (2012). Online Dating: A Critical Analysis. *Psychological Science in the Public Interest, 13*(1), 3–66.
-- Johnson, S. (2008). *Hold Me Tight: Seven Conversations for a Lifetime of Love.* Little, Brown.
-- Bowlby, J. (1969). *Attachment and Loss, Vol. 1: Attachment.* Basic Books.
+- Gottman, J.M. & Silver, N. (1999). [*The Seven Principles for Making Marriage Work.*](https://www.gottman.com/product/the-seven-principles-for-making-marriage-work/) Crown. (See also: [Gottman Institute Research Summary](https://www.gottman.com/about/research/couples/))
+- Finkel, E.J. et al. (2012). [Online Dating: A Critical Analysis from the Perspective of Psychological Science.](https://journals.sagepub.com/doi/10.1177/1529100612436522) *Psychological Science in the Public Interest, 13*(1), 3–66.
+- Johnson, S. (2008). [*Hold Me Tight: Seven Conversations for a Lifetime of Love.*](https://www.drsuejohnson.com/books/hold-me-tight/) Little, Brown.
+- Bowlby, J. (1969). *Attachment and Loss, Vol. 1: Attachment.* Basic Books. (Overview: [Attachment Theory — Simply Psychology](https://www.simplypsychology.org/bowlby.html))
