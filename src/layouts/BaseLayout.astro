@@ -22,7 +22,7 @@ const websiteSchema = includeWebSiteSchema ? generateWebSiteSchema() : null;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#8B1A1A" />
+    <meta name="theme-color" content="#b8863f" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="The Local Match Co. Blog" href="/rss.xml" />
     <meta name="generator" content={Astro.generator} />
@@ -166,34 +166,34 @@ const websiteSchema = includeWebSiteSchema ? generateWebSiteSchema() : null;
 
 <style is:global>
   :root {
-    --bg: #0d0608;
-    --fg: #f5e6d8;
-    --accent: #8B1A1A;
-    --accent-light: #c0392b;
-    --muted: #b09080;
-    --border: #2a1010;
-    --cream: #F5E6D8;
+    --bg: #3d2010;
+    --fg: #fdf6f0;
+    --accent: #b8863f;
+    --accent-light: #c9a96e;
+    --muted: #c9a96e;
+    --border: #5c3520;
+    --cream: #fdf6f0;
   }
 
   [data-theme="light"] {
-    --bg: #fdf8f5;
-    --fg: #1a0505;
-    --accent: #8B1A1A;
-    --accent-light: #c0392b;
-    --muted: #5a3535;
-    --border: #e8d5c8;
-    --cream: #F5E6D8;
+    --bg: #fdf6f0;
+    --fg: #3d2010;
+    --accent: #b8863f;
+    --accent-light: #c9a96e;
+    --muted: #9a6e30;
+    --border: #edd0b0;
+    --cream: #fdf6f0;
   }
 
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --bg: #fdf8f5;
-      --fg: #1a0505;
-      --accent: #8B1A1A;
-      --accent-light: #c0392b;
-      --muted: #5a3535;
-      --border: #e8d5c8;
-      --cream: #F5E6D8;
+      --bg: #fdf6f0;
+      --fg: #3d2010;
+      --accent: #b8863f;
+      --accent-light: #c9a96e;
+      --muted: #9a6e30;
+      --border: #edd0b0;
+      --cream: #fdf6f0;
     }
   }
 
