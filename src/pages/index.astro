@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { calculateReadingTime, formatReadingTime } from '../utils/readingTime';
+
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => {
+    if (a.data.pinned && !b.data.pinned) return -1;
+    if (!a.data.pinned && b.data.pinned) return 1;
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+  });
+---
+
+<BaseLayout title="The Local Match Co. — Blog" includeWebSiteSchema={true}>
+  <header class="hero">
+    <h1>The Local Match Co.</h1>
+    <p class="tagline">Insights on matchmaking, relationships, and building a business you believe in.</p>
+    <div class="hero-cta">
+      <a href="https://thelocalmatch.com/#invest" class="btn-primary" target="_blank" rel="noopener">Explore Franchise Opportunities →</a>
+      <a href="/blog" class="btn-secondary">Read the Blog</a>
+    </div>
+  </header>
+
+  <section class="recent-posts">
+    <h2>Latest Posts</h2>
+    <div class="posts-grid">
+      {posts.map(async (post) => {
+        const readingTime = calculateReadingTime(post.body);
+        const tags = post.data.tags || [];
+        return (
+          <article class="post-card">
+            <a href={`/blog/${post.slug}`} class="post-link">
+              <div class="post-tags">
+                {tags.slice(0,3).map(tag => <span class="tag">{tag}</span>)}
+              </div>
+              <h3>{post.data.title}</h3>
+              {post.data.description && <p class="description">{post.data.description}</p>}
+              <div class="post-meta">
+                <time datetime={post.data.date}>{post.data.date}</time>
+                <span class="reading-time">{formatReadingTime(readingTime)}</span>
+              </div>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+    {posts.length === 0 && (
+      <p class="empty">No posts yet. Check back soon.</p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+    color: var(--muted);
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(139, 26, 26, 0.1);
+  }
+
+  .recent-posts h2 {
+    margin-bottom: 1.5rem;
+    color: var(--fg);
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.1s;
+  }
+
+  .post-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .post-link {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(139, 26, 26, 0.15);
+    color: var(--accent);
+    border-radius: 1rem;
+    border: 1px solid rgba(139, 26, 26, 0.3);
+  }
+
+  .post-card h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+    color: var(--fg);
+    line-height: 1.4;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 3rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .hero h1 { font-size: 3.5rem; }
+  }
+</style>

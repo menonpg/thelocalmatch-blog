@@ -1,0 +1,434 @@
+---
+import { generateWebSiteSchema } from '../utils/schema';
+
+interface Props {
+  title: string;
+  description?: string;
+  includeWebSiteSchema?: boolean;
+}
+
+const {
+  title,
+  description = "Insights on matchmaking, relationships, and building a business you believe in.",
+  includeWebSiteSchema = false,
+} = Astro.props;
+
+const websiteSchema = includeWebSiteSchema ? generateWebSiteSchema() : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#8B1A1A" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="The Local Match Co. Blog" href="/rss.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://blog.thelocalmatch.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={Astro.url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://blog.thelocalmatch.com/og-image.png" />
+    {websiteSchema && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />}
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <!-- Back-to-main sticky banner -->
+    <div class="back-banner">
+      <a href="https://thelocalmatch.com" class="back-banner-link">← The Local Match Co.</a>
+      &nbsp;·&nbsp;
+      <a href="https://thelocalmatch.com/#invest" class="back-banner-link">Bring matchmaking to your city →</a>
+    </div>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+      <nav aria-label="Main navigation">
+        <a href="/" class="logo" aria-label="The Local Match Co. Blog">
+          <svg class="logo-icon" width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="16" r="6" stroke="currentColor" stroke-width="2.5"/>
+            <circle cx="26" cy="16" r="6" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M 14 22 Q 20 32 26 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M 20 13 L 20 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 18 10 L 22 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>The Local Match Co.</span>
+        </a>
+        <div class="mobile-controls">
+          <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+              <line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="19" y1="10" x2="17" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="10" x2="1" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 10.5C17 14.0899 14.0899 17 10.5 17C6.91015 17 4 14.0899 4 10.5C4 6.91015 6.91015 4 10.5 4C10.7761 4 11.0479 4.01709 11.3145 4.05027C10.0924 5.18669 9.33333 6.82235 9.33333 8.66667C9.33333 11.8803 11.9531 14.5 15.1667 14.5C16.0076 14.5 16.8014 14.3178 17.5162 13.9916C17.1781 14.9267 16.6601 15.7787 16 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button id="mobile-menu-toggle" aria-label="Toggle mobile menu" class="mobile-menu-toggle">
+            <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="nav-links" id="mobile-menu">
+          <a href="/blog">Blog</a>
+          <a href="/about">About</a>
+          <a href="https://thelocalmatch.com" target="_blank" rel="noopener noreferrer">Main Site</a>
+          <a href="https://thelocalmatch.com/#invest" target="_blank" rel="noopener noreferrer">Franchise</a>
+          <button id="theme-toggle-desktop" aria-label="Toggle theme" class="theme-toggle theme-toggle-desktop">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+              <line x1="10" y1="1" x2="10" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="10" y1="17" x2="10" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="19" y1="10" x2="17" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="10" x2="1" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M17 10.5C17 14.0899 14.0899 17 10.5 17C6.91015 17 4 14.0899 4 10.5C4 6.91015 6.91015 4 10.5 4C10.7761 4 11.0479 4.01709 11.3145 4.05027C10.0924 5.18669 9.33333 6.82235 9.33333 8.66667C9.33333 11.8803 11.9531 14.5 15.1667 14.5C16.0076 14.5 16.8014 14.3178 17.5162 13.9916" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main id="main-content">
+      <slot />
+    </main>
+    <footer>
+      <div class="footer-links">
+        <a href="/about">About</a>
+        <a href="/rss.xml">RSS Feed</a>
+        <a href="https://thelocalmatch.com" target="_blank">thelocalmatch.com</a>
+        <a href="https://thelocalmatch.com/#invest" target="_blank">Franchise Opportunities</a>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 <a href="https://thelocalmatch.com" target="_blank">The Local Match Co.</a> · Professional matchmaking, built to scale.</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      const getTheme = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      };
+      const setTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      };
+      setTheme(getTheme());
+      const toggleTheme = () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      };
+      document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+      document.getElementById('theme-toggle-desktop')?.addEventListener('click', toggleTheme);
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuToggle?.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('active');
+        mobileMenu?.classList.toggle('active');
+      });
+      mobileMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuToggle?.classList.remove('active');
+          mobileMenu?.classList.remove('active');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (mobileMenu?.classList.contains('active')) {
+          if (!mobileMenu.contains(e.target) && !mobileMenuToggle?.contains(e.target)) {
+            mobileMenuToggle?.classList.remove('active');
+            mobileMenu?.classList.remove('active');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #0d0608;
+    --fg: #f5e6d8;
+    --accent: #8B1A1A;
+    --accent-light: #c0392b;
+    --muted: #b09080;
+    --border: #2a1010;
+    --cream: #F5E6D8;
+  }
+
+  [data-theme="light"] {
+    --bg: #fdf8f5;
+    --fg: #1a0505;
+    --accent: #8B1A1A;
+    --accent-light: #c0392b;
+    --muted: #5a3535;
+    --border: #e8d5c8;
+    --cream: #F5E6D8;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #fdf8f5;
+      --fg: #1a0505;
+      --accent: #8B1A1A;
+      --accent-light: #c0392b;
+      --muted: #5a3535;
+      --border: #e8d5c8;
+      --cream: #F5E6D8;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Georgia, serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .back-banner {
+    background: #8B1A1A;
+    color: #F5E6D8;
+    padding: 8px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+
+  .back-banner-link {
+    color: #F5E6D8;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .back-banner-link:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+  }
+
+  .skip-link:focus { top: 0; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+  }
+
+  nav {
+    max-width: 60rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: Georgia, serif;
+  }
+
+  .logo-icon { width: 24px; height: 24px; color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--fg); }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    transition: color 0.2s;
+  }
+
+  .theme-toggle:hover { color: var(--fg); }
+
+  [data-theme="dark"] .sun-icon,
+  [data-theme="light"] .moon-icon { display: block; }
+  [data-theme="dark"] .moon-icon,
+  [data-theme="light"] .sun-icon { display: none; }
+  :root:not([data-theme]) .sun-icon { display: block; }
+  :root:not([data-theme]) .moon-icon { display: none; }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .sun-icon { display: none; }
+    :root:not([data-theme]) .moon-icon { display: block; }
+  }
+
+  main {
+    flex: 1;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    width: 100%;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+    max-width: 60rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-bottom a { color: var(--accent); text-decoration: none; }
+  .footer-bottom a:hover { text-decoration: underline; }
+
+  .mobile-controls { display: none; }
+  .theme-toggle-desktop { display: block; }
+
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .mobile-menu-toggle .close-icon { display: none; }
+  .mobile-menu-toggle.active .hamburger-icon { display: none; }
+  .mobile-menu-toggle.active .close-icon { display: block; }
+
+  h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; font-family: Georgia, serif; }
+  h2 { font-size: 1.875rem; margin: 2rem 0 1rem; line-height: 1.3; font-family: Georgia, serif; }
+  h3 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; font-family: Georgia, serif; }
+  p { margin-bottom: 1rem; color: var(--muted); }
+  a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  nav a, .logo { text-decoration: none; }
+
+  code {
+    background: var(--border);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+  }
+
+  pre { padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin: 1.5rem 0; }
+  pre code { background: none; padding: 0; font-size: 0.875rem; }
+
+  ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; color: var(--muted); }
+  li { margin-bottom: 0.5rem; }
+
+  @media (max-width: 768px) {
+    header { padding: 1rem 1.5rem; }
+    nav { flex-direction: row; justify-content: space-between; align-items: center; width: 100%; }
+    .mobile-controls { display: flex; gap: 0.5rem; align-items: center; }
+    .theme-toggle-desktop { display: none; }
+    .mobile-menu-toggle { display: block; }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 80%;
+      max-width: 300px;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      flex-direction: column;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.3s ease;
+      z-index: 100;
+    }
+
+    .nav-links.active { right: 0; }
+    .nav-links a { font-size: 1.125rem; }
+    main { padding: 2rem 1.5rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+  }
+</style>

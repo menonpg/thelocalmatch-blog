@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { calculateReadingTime, formatReadingTime } from '../../utils/readingTime';
+
+const now = new Date();
+const posts = (await getCollection('blog'))
+  .filter(post => {
+    if (post.data.draft) return false;
+    if (post.data.publishDate) {
+      if (new Date(post.data.publishDate) > now) return false;
+    }
+    return true;
+  })
+  .sort((a, b) => {
+    if (a.data.pinned && !b.data.pinned) return -1;
+    if (!a.data.pinned && b.data.pinned) return 1;
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+  });
+
+const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
+---
+
+<BaseLayout title="Blog — The Local Match Co." description="Insights on matchmaking, relationships, and building a business you believe in.">
+  <Breadcrumbs items={[
+    { label: 'Home', href: '/' },
+    { label: 'Blog' }
+  ]} />
+  <header class="blog-header">
+    <h1>Blog</h1>
+    <p class="intro">
+      Insights on matchmaking, relationships, and building a business you believe in.
+    </p>
+    <div class="blog-meta">
+      <a href="/rss.xml" class="rss-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 2C2 2 2 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M2 2C2 2 2 12 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="3" cy="13" r="1" fill="currentColor"/>
+        </svg>
+        RSS Feed
+      </a>
+      <span class="post-count">{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
+    </div>
+    {allTags.length > 0 && (
+      <div class="tag-filters">
+        <button class="tag-btn active" data-tag="all">All</button>
+        {allTags.map(tag => (
+          <button class="tag-btn" data-tag={tag}>{tag}</button>
+        ))}
+      </div>
+    )}
+  </header>
+
+  <div class="posts" id="posts-list">
+    {posts.map(async (post) => {
+      const readingTime = calculateReadingTime(post.body);
+      const tags = post.data.tags || [];
+      return (
+        <article class={`post-card ${post.data.pinned ? 'pinned' : ''}`} data-tags={JSON.stringify(tags)}>
+          <a href={`/blog/${post.slug}`} class="post-link">
+            <div class="post-tags">
+              {tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+            <h2>
+              {post.data.pinned && <span class="pin-badge" title="Featured">📌</span>}
+              {post.data.title}
+            </h2>
+            {post.data.description && <p class="description">{post.data.description}</p>}
+            <div class="meta">
+              <time datetime={post.data.date}>{post.data.date}</time>
+              <span class="sep" aria-hidden="true">·</span>
+              <span class="reading-time">{formatReadingTime(readingTime)}</span>
+            </div>
+          </a>
+        </article>
+      );
+    })}
+  </div>
+
+  {posts.length === 0 && (
+    <p class="empty">No posts yet. Check back soon.</p>
+  )}
+</BaseLayout>
+
+<style>
+  .blog-header { margin-bottom: 2.5rem; }
+  .blog-header h1 { margin-bottom: 0.5rem; }
+  .intro { color: var(--muted); margin-bottom: 1rem; font-size: 1.1rem; }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .rss-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .rss-link:hover { text-decoration: underline; }
+  .post-count { color: var(--muted); }
+
+  .tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag-btn {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+  }
+
+  .tag-btn:hover, .tag-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(139, 26, 26, 0.1);
+  }
+
+  .posts { display: grid; gap: 1rem; }
+
+  .post-card {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    transition: border-color 0.2s, transform 0.1s;
+  }
+
+  .post-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .post-card.pinned { border-color: rgba(139,26,26,0.4); }
+
+  .post-link {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(139, 26, 26, 0.15);
+    color: var(--accent);
+    border-radius: 1rem;
+    border: 1px solid rgba(139, 26, 26, 0.25);
+  }
+
+  .post-card h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+    color: var(--fg);
+    line-height: 1.4;
+  }
+
+  .pin-badge { margin-right: 0.4rem; }
+
+  .description {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .sep { opacity: 0.5; }
+
+  .empty { text-align: center; color: var(--muted); padding: 3rem 0; }
+
+  .post-card.hidden { display: none; }
+</style>
+
+<script>
+  const tagBtns = document.querySelectorAll('.tag-btn');
+  const posts = document.querySelectorAll('.post-card');
+
+  tagBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tagBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const selected = btn.getAttribute('data-tag');
+      posts.forEach(post => {
+        if (selected === 'all') {
+          post.classList.remove('hidden');
+        } else {
+          const tags = JSON.parse(post.getAttribute('data-tags') || '[]');
+          post.classList.toggle('hidden', !tags.includes(selected));
+        }
+      });
+    });
+  });
+</script>

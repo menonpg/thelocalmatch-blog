@@ -1,0 +1,7 @@
+# robots.txt for The Local Match Co. Blog
+
+User-agent: *
+Allow: /
+Disallow: /_*
+
+Sitemap: https://blog.thelocalmatch.com/sitemap-index.xml

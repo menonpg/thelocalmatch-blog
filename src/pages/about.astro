@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<BaseLayout title="About — The Local Match Co." description="About The Local Match Co. — professional matchmaking franchise built on 25 years of experience.">
+  <Breadcrumbs items={[
+    { label: 'Home', href: '/' },
+    { label: 'About' }
+  ]} />
+  <article class="about">
+    <h1>About The Local Match Co.</h1>
+    <p class="lead">
+      The Local Match Co. is a franchise platform that helps qualified operators launch 
+      professional matchmaking services in their own city — built on 25 years of proven 
+      methodology from 412 Singles in Pittsburgh.
+    </p>
+
+    <h2>Our Story</h2>
+    <p>
+      For 25 years, Rob Vargas has been making introductions in Pittsburgh — quietly, personally,
+      one conversation at a time. While dating apps got bigger and algorithms got smarter, he kept 
+      doing the same thing: sitting across the table from someone who was genuinely ready for a 
+      relationship, understanding what they were looking for, and going to find it.
+    </p>
+    <p>
+      Now, for the first time, he's opening that model up to other cities.
+    </p>
+
+    <h2>This Blog</h2>
+    <p>
+      This blog shares our thinking on matchmaking, relationships, and building a business 
+      you believe in. We write for future franchise operators, for people curious about 
+      professional matchmaking, and for anyone who believes that human connection deserves 
+      a better infrastructure than a swipe.
+    </p>
+
+    <div class="cta-section">
+      <h2>Interested in Your City?</h2>
+      <p>We take one operator per metro area. If you've been thinking about this, now's the time.</p>
+      <a href="https://thelocalmatch.com/#invest" class="cta-btn" target="_blank" rel="noopener">
+        Learn About Franchise Opportunities →
+      </a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .about { max-width: 42rem; }
+  .about h1 { margin-bottom: 1rem; }
+  .lead {
+    font-size: 1.15rem;
+    color: var(--fg);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .about p { line-height: 1.8; margin-bottom: 1.5rem; }
+  .cta-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(139, 26, 26, 0.08);
+    border: 1px solid rgba(139, 26, 26, 0.3);
+    border-radius: 0.75rem;
+  }
+  .cta-section h2 { margin-top: 0; }
+  .cta-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: var(--cream);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--accent-light); }
+</style>
