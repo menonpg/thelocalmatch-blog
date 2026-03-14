@@ -73,8 +73,8 @@ Finding a lasting relationship has always required a combination of genuine self
 *The Local Match Co. is a professional matchmaking service based in Pittsburgh, PA. Learn more at [thelocalmatch.com](https://thelocalmatch.com).*
 
 **Sources:**
-- Strubel, J. & Petrie, T.A. (2016). Love me Tinder: Body image and psychosocial functioning among men and women. *Body Image, 18*, 123–128.
-- Sumter, S.R. et al. (2017). Love me Tinder: Untangling emerging adults' motivations for using the dating application Tinder. *Telematics and Informatics, 34*(1), 67–78.
-- Schwartz, B. (2004). *The Paradox of Choice: Why More Is Less.* HarperCollins.
-- Navarro, R. et al. (2020). Examining the relationship between ghosting and well-being. *Journal of Social and Personal Relationships.*
-- Pew Research Center (2023). *Online Dating in America.*
+- Strubel, J. & Petrie, T.A. (2016). [Love me Tinder: Body image and psychosocial functioning among men and women.](https://www.sciencedirect.com/science/article/abs/pii/S1740144516300912) *Body Image, 18*, 123–128.
+- Sumter, S.R. et al. (2017). [Love me Tinder: Untangling emerging adults' motivations for using the dating application Tinder.](https://www.sciencedirect.com/science/article/abs/pii/S0736585316301216) *Telematics and Informatics, 34*(1), 67–78.
+- Schwartz, B. (2004). [*The Paradox of Choice: Why More Is Less.*](https://www.harpercollins.com/products/the-paradox-of-choice-barry-schwartz) HarperCollins. (See also: [Schwartz TED Talk](https://www.ted.com/talks/barry_schwartz_the_paradox_of_choice))
+- Navarro, R. et al. (2020). [Ghosting and destiny: Implicit theories of relationships predict beliefs about ghosting.](https://journals.sagepub.com/doi/10.1177/0265407520935388) *Journal of Social and Personal Relationships, 37*(3).
+- Pew Research Center (2023). [*Online Dating in America.*](https://www.pewresearch.org/internet/2023/02/02/online-dating/)
