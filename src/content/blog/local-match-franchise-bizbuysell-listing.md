@@ -22,6 +22,8 @@ faqItems:
 
 We've just listed The Local Match Co. franchise opportunity on [BizBuySell](https://www.bizbuysell.com/listings/Profile/?q=2485863&l_ilp=1) — the largest business-for-sale marketplace in the United States.
 
+![The Local Match Co. franchise infographic — investment paths, revenue potential, and what's included](/bizbuysell-infographic.jpg)
+
 This is a meaningful step for us. BizBuySell isn't a place for casual browsing. The people searching there are actively looking for their next business. They've done the math, they have the capital, and they're evaluating opportunities side by side. That's exactly who we want to be in front of.
 
 ## What the Listing Covers
